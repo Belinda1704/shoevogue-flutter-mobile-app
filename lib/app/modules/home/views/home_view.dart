@@ -126,28 +126,83 @@ class HomeView extends GetView<HomeController> {
       slivers: [
         SliverAppBar(
           floating: true,
-          backgroundColor: Colors.blue,
-          title: const Text('ShoeVogue', style: TextStyle(color: Colors.white)),
-          leading: IconButton(
-            icon: const Icon(Icons.menu, color: Colors.white),
-            onPressed: () {
-              scaffoldKey.currentState?.openDrawer();
-            },
+          pinned: true,
+          expandedHeight: 180,
+          backgroundColor: Colors.transparent,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.blue[700]!,
+                  Colors.blue[500]!,
+                ],
+              ),
+            ),
+            child: FlexibleSpaceBar(
+              background: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.menu, color: Colors.white),
+                            onPressed: () {
+                              scaffoldKey.currentState?.openDrawer();
+                            },
+                          ),
+                          const Expanded(
+                            child: Text(
+                              'ShoeVogue',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.notifications_outlined, color: Colors.white),
+                            onPressed: () {
+                              // TODO: Implement notifications
+                            },
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        height: 45,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.search, color: Colors.grey),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  hintText: 'Search in Store',
+                                  hintStyle: TextStyle(color: Colors.grey[400]),
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.search, color: Colors.white),
-              onPressed: () {
-                Get.toNamed('/search');
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.notifications_outlined, color: Colors.white),
-              onPressed: () {
-                // TODO: Implement notifications
-              },
-            ),
-          ],
         ),
         SliverToBoxAdapter(
           child: Padding(
@@ -155,13 +210,16 @@ class HomeView extends GetView<HomeController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Categories',
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 16),
                 SizedBox(
-                  height: 100,
+                  height: 90,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
@@ -177,15 +235,18 @@ class HomeView extends GetView<HomeController> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Featured',
-                      style: Theme.of(context).textTheme.titleLarge,
+                    const Text(
+                      'Popular Products',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     TextButton(
                       onPressed: () {
-                        // TODO: Show all featured items
+                        // TODO: Show all products
                       },
-                      child: const Text('See All'),
+                      child: const Text('View all'),
                     ),
                   ],
                 ),

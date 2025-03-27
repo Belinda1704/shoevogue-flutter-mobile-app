@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../routes/app_pages.dart';
 import '../controllers/profile_controller.dart';
 import 'edit_profile_view.dart';
 import 'addresses_view.dart';
@@ -15,6 +14,8 @@ class ProfileView extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
@@ -22,7 +23,7 @@ class ProfileView extends GetView<ProfileController> {
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
-            onPressed: () => Get.toNamed(Routes.settings),
+            onPressed: () => Get.toNamed('/settings'),
           ),
         ],
       ),
@@ -35,13 +36,13 @@ class ProfileView extends GetView<ProfileController> {
               child: Column(
                 children: [
                   // Profile image
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 50,
                     backgroundColor: Colors.blue,
                     child: Icon(
                       Icons.person,
                       size: 50,
-                      color: Colors.white,
+                      color: isDark ? Colors.grey[900] : Colors.white,
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -59,7 +60,7 @@ class ProfileView extends GetView<ProfileController> {
                   Obx(() => Text(
                     controller.email.value,
                     style: TextStyle(
-                      color: Colors.grey.shade600,
+                      color: isDark ? Colors.grey[300] : Colors.grey[600],
                       fontSize: 14,
                     ),
                   )),
@@ -71,11 +72,11 @@ class ProfileView extends GetView<ProfileController> {
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: isDark ? Colors.grey[800] : Colors.white,
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.shade200,
+                    color: isDark ? Colors.black26 : Colors.grey.shade200,
                     spreadRadius: 1,
                     blurRadius: 4,
                   ),
@@ -91,32 +92,32 @@ class ProfileView extends GetView<ProfileController> {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Colors.grey.shade800,
+                        color: isDark ? Colors.grey[300] : Colors.grey[800],
                       ),
                     ),
                   ),
-                  
-                  // Edit Profile
                   ListTile(
-                    leading: const Icon(Icons.person_outline),
+                    leading: Icon(Icons.person_outline,
+                        color: isDark ? Colors.grey[300] : null),
                     title: const Text('Edit Profile'),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                    trailing: Icon(Icons.arrow_forward_ios,
+                        size: 16, color: isDark ? Colors.grey[300] : null),
                     onTap: () => Get.to(() => const EditProfileView()),
                   ),
-                  
-                  // Addresses
                   ListTile(
-                    leading: const Icon(Icons.location_on_outlined),
+                    leading: Icon(Icons.location_on_outlined,
+                        color: isDark ? Colors.grey[300] : null),
                     title: const Text('Addresses'),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                    trailing: Icon(Icons.arrow_forward_ios,
+                        size: 16, color: isDark ? Colors.grey[300] : null),
                     onTap: () => Get.to(() => const AddressesView()),
                   ),
-                  
-                  // Orders
                   ListTile(
-                    leading: const Icon(Icons.shopping_bag_outlined),
+                    leading: Icon(Icons.shopping_bag_outlined,
+                        color: isDark ? Colors.grey[300] : null),
                     title: const Text('Orders'),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                    trailing: Icon(Icons.arrow_forward_ios,
+                        size: 16, color: isDark ? Colors.grey[300] : null),
                     onTap: () => Get.to(() => const OrdersView()),
                   ),
                 ],
@@ -127,11 +128,11 @@ class ProfileView extends GetView<ProfileController> {
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: isDark ? Colors.grey[800] : Colors.white,
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.shade200,
+                    color: isDark ? Colors.black26 : Colors.grey.shade200,
                     spreadRadius: 1,
                     blurRadius: 4,
                   ),
@@ -147,24 +148,24 @@ class ProfileView extends GetView<ProfileController> {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Colors.grey.shade800,
+                        color: isDark ? Colors.grey[300] : Colors.grey[800],
                       ),
                     ),
                   ),
-                  
-                  // Notifications
                   ListTile(
-                    leading: const Icon(Icons.notifications_none),
+                    leading: Icon(Icons.notifications_none,
+                        color: isDark ? Colors.grey[300] : null),
                     title: const Text('Notifications'),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                    trailing: Icon(Icons.arrow_forward_ios,
+                        size: 16, color: isDark ? Colors.grey[300] : null),
                     onTap: () => Get.to(() => const NotificationsView()),
                   ),
-                  
-                  // Privacy
                   ListTile(
-                    leading: const Icon(Icons.privacy_tip_outlined),
+                    leading: Icon(Icons.privacy_tip_outlined,
+                        color: isDark ? Colors.grey[300] : null),
                     title: const Text('Privacy'),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                    trailing: Icon(Icons.arrow_forward_ios,
+                        size: 16, color: isDark ? Colors.grey[300] : null),
                     onTap: () => Get.to(() => const PrivacyView()),
                   ),
                 ],
@@ -175,11 +176,11 @@ class ProfileView extends GetView<ProfileController> {
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: isDark ? Colors.grey[800] : Colors.white,
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.shade200,
+                    color: isDark ? Colors.black26 : Colors.grey.shade200,
                     spreadRadius: 1,
                     blurRadius: 4,
                   ),
@@ -195,24 +196,24 @@ class ProfileView extends GetView<ProfileController> {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Colors.grey.shade800,
+                        color: isDark ? Colors.grey[300] : Colors.grey[800],
                       ),
                     ),
                   ),
-                  
-                  // Help Center
                   ListTile(
-                    leading: const Icon(Icons.help_outline),
+                    leading: Icon(Icons.help_outline,
+                        color: isDark ? Colors.grey[300] : null),
                     title: const Text('Help Center'),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                    trailing: Icon(Icons.arrow_forward_ios,
+                        size: 16, color: isDark ? Colors.grey[300] : null),
                     onTap: () => Get.to(() => const HelpCenterView()),
                   ),
-                  
-                  // About Us
                   ListTile(
-                    leading: const Icon(Icons.info_outline),
+                    leading: Icon(Icons.info_outline,
+                        color: isDark ? Colors.grey[300] : null),
                     title: const Text('About Us'),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                    trailing: Icon(Icons.arrow_forward_ios,
+                        size: 16, color: isDark ? Colors.grey[300] : null),
                     onTap: () => Get.to(() => const AboutUsView()),
                   ),
                 ],
@@ -227,7 +228,9 @@ class ProfileView extends GetView<ProfileController> {
                 onPressed: () => controller.logout(),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),
+                  elevation: isDark ? 1 : 2,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -235,9 +238,8 @@ class ProfileView extends GetView<ProfileController> {
                 child: const Text(
                   'Logout',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
                   ),
                 ),
               ),

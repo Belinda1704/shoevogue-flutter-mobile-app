@@ -37,7 +37,14 @@ class AuthController extends GetxController {
     Get.offAllNamed('/home');
   }
 
-  Future<void> signup(String email, String password, String name) async {
+  Future<void> signup({
+    required String email,
+    required String password,
+    required String firstName,
+    required String lastName,
+    required String username,
+    required String phone,
+  }) async {
     // TODO: Implement actual signup logic
     _isLoggedIn.value = true;
     Get.offAllNamed('/home');
