@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "1059462392043",
-    "project_id": "flutter-49f04",
-    "storage_bucket": "flutter-49f04.firebasestorage.app"
+    "project_number": "872644437819",
+    "project_id": "shoevogueapp",
+    "storage_bucket": "shoevogueapp.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1059462392043:android:71617db6c4ca000707f6ae",
+        "mobilesdk_app_id": "1:872644437819:android:8dee49d2e3c8fafd8cb91e",
         "android_client_info": {
           "package_name": "com.example.flutter_app"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBuUuzQUG-E744QGb3JvBpRayOEE40BafA"
+          "current_key": "AIzaSyB4ZD8ImklUC4ybVw-Edp4aFziOxjyuiMY"
         }
       ],
       "services": {
