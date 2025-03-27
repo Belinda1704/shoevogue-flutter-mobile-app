@@ -9,7 +9,7 @@ import 'app/modules/profile/bindings/profile_binding.dart';
 import 'app/modules/settings/bindings/settings_binding.dart';
 import 'app/translations/app_translations.dart';
 import 'package:get_storage/get_storage.dart';
-// Import other bindings you need
+// Import other bindings needed
 
 class InitialBinding extends Bindings {
   @override
