@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/product_detail_controller.dart';
+import '../../../utils/currency_formatter.dart';
 
 class ProductDetailView extends GetView<ProductDetailController> {
   const ProductDetailView({super.key});
@@ -10,9 +11,9 @@ class ProductDetailView extends GetView<ProductDetailController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: const Text(
-          'Product Details',
-          style: TextStyle(color: Colors.white),
+        title: Text(
+          'Product Details'.tr,
+          style: const TextStyle(color: Colors.white),
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
@@ -68,7 +69,7 @@ class ProductDetailView extends GetView<ProductDetailController> {
                             ),
                           ),
                           Text(
-                            '\$${controller.product['price'].toStringAsFixed(2)}',
+                            CurrencyFormatter.formatPrice(controller.product['price']),
                             style: const TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -88,7 +89,7 @@ class ProductDetailView extends GetView<ProductDetailController> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Text(
-                          controller.product['category'],
+                          controller.product['category'].toString().tr,
                           style: const TextStyle(
                             color: Colors.blue,
                             fontWeight: FontWeight.bold,
@@ -99,9 +100,9 @@ class ProductDetailView extends GetView<ProductDetailController> {
                       const SizedBox(height: 24),
                       
                       // Size Selection
-                      const Text(
-                        'Select Size',
-                        style: TextStyle(
+                      Text(
+                        'Select Size'.tr,
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
@@ -138,16 +139,16 @@ class ProductDetailView extends GetView<ProductDetailController> {
                       const SizedBox(height: 24),
                       
                       // Description
-                      const Text(
-                        'Description',
-                        style: TextStyle(
+                      Text(
+                        'Description'.tr,
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Premium quality footwear with excellent comfort and durability. Perfect for everyday wear and special occasions.',
+                        'product_description'.tr,
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey[700],
@@ -183,9 +184,9 @@ class ProductDetailView extends GetView<ProductDetailController> {
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-          child: const Text(
-            'Add to Cart',
-            style: TextStyle(
+          child: Text(
+            'Add to Cart'.tr,
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: Colors.white,

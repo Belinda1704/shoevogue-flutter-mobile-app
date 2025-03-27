@@ -7,6 +7,8 @@ import 'app/modules/cart/bindings/cart_binding.dart';
 import 'app/modules/favorites/bindings/favorites_binding.dart';
 import 'app/modules/profile/bindings/profile_binding.dart';
 import 'app/modules/settings/bindings/settings_binding.dart';
+import 'app/translations/app_translations.dart';
+import 'package:get_storage/get_storage.dart';
 // Import other bindings you need
 
 class InitialBinding extends Bindings {
@@ -24,11 +26,38 @@ class InitialBinding extends Bindings {
 class App extends StatelessWidget {
   const App({super.key});
 
+  String _getLanguageCode(String savedLanguage) {
+    switch (savedLanguage) {
+      case 'English':
+        return 'en';
+      case 'Spanish':
+        return 'es';
+      case 'French':
+        return 'fr';
+      case 'German':
+        return 'de';
+      case 'Italian':
+        return 'it';
+      case 'Portuguese':
+        return 'pt';
+      default:
+        return 'en';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final storage = GetStorage();
+    final savedLanguage = storage.read('language') ?? 'English';
+    final languageCode = _getLanguageCode(savedLanguage);
+    final isDarkMode = storage.read('isDarkMode') ?? false;
+
     return GetMaterialApp(
-      title: 'ShoeVogue',
+      title: 'ShoeVogue'.tr,
       debugShowCheckedModeBanner: false,
+      translations: AppTranslations(),
+      locale: Locale(languageCode),
+      fallbackLocale: const Locale('en'),
       theme: ThemeData(
         primarySwatch: Colors.blue,
         brightness: Brightness.light,
@@ -52,7 +81,7 @@ class App extends StatelessWidget {
         cardColor: Colors.grey[850],
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      themeMode: ThemeMode.system, // This will be controlled by the SettingsController
+      themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
       initialRoute: Routes.onboarding,
       getPages: AppPages.routes,
       initialBinding: InitialBinding(),

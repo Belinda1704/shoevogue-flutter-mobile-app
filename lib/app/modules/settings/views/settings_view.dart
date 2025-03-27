@@ -9,7 +9,7 @@ class SettingsView extends GetView<SettingsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: Text('settings'.tr),
         centerTitle: true,
       ),
       body: ListView(
@@ -34,7 +34,7 @@ class SettingsView extends GetView<SettingsController> {
                 Padding(
                   padding: const EdgeInsets.all(16),
                   child: Text(
-                    'Appearance',
+                    'appearance'.tr,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -43,9 +43,9 @@ class SettingsView extends GetView<SettingsController> {
                   ),
                 ),
                 Obx(() => SwitchListTile(
-                  title: const Text('Dark Mode'),
+                  title: Text('dark_mode'.tr),
                   subtitle: Text(
-                    controller.isDarkMode.value ? 'Dark theme enabled' : 'Light theme enabled',
+                    controller.isDarkMode.value ? 'dark_mode_enabled'.tr : 'light_mode_enabled'.tr,
                     style: TextStyle(color: Theme.of(context).textTheme.bodySmall?.color),
                   ),
                   value: controller.isDarkMode.value,
@@ -75,7 +75,7 @@ class SettingsView extends GetView<SettingsController> {
                 Padding(
                   padding: const EdgeInsets.all(16),
                   child: Text(
-                    'App Settings',
+                    'app_settings'.tr,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -83,30 +83,18 @@ class SettingsView extends GetView<SettingsController> {
                     ),
                   ),
                 ),
-                ListTile(
-                  title: const Text('Language'),
-                  subtitle: const Text('English'),
+                Obx(() => ListTile(
+                  title: Text('language'.tr),
+                  subtitle: Text(controller.currentLanguage.value),
                   trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-                  onTap: () {
-                    Get.snackbar(
-                      'Coming Soon',
-                      'Language settings will be available in future updates',
-                      snackPosition: SnackPosition.BOTTOM,
-                    );
-                  },
-                ),
-                ListTile(
-                  title: const Text('Currency'),
-                  subtitle: const Text('USD'),
+                  onTap: () => _showLanguageDialog(context),
+                )),
+                Obx(() => ListTile(
+                  title: Text('currency'.tr),
+                  subtitle: Text('${controller.currentCurrency.value} (${controller.getCurrencySymbol(controller.currentCurrency.value)})'),
                   trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-                  onTap: () {
-                    Get.snackbar(
-                      'Coming Soon',
-                      'Currency settings will be available in future updates',
-                      snackPosition: SnackPosition.BOTTOM,
-                    );
-                  },
-                ),
+                  onTap: () => _showCurrencyDialog(context),
+                )),
               ],
             ),
           ),
@@ -131,7 +119,7 @@ class SettingsView extends GetView<SettingsController> {
                 Padding(
                   padding: const EdgeInsets.all(16),
                   child: Text(
-                    'About',
+                    'about'.tr,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -140,13 +128,66 @@ class SettingsView extends GetView<SettingsController> {
                   ),
                 ),
                 ListTile(
-                  title: const Text('App Version'),
+                  title: Text('app_version'.tr),
                   subtitle: const Text('1.0.0'),
                 ),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  void _showLanguageDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('select_language'.tr),
+        content: SizedBox(
+          width: double.maxFinite,
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: controller.languages.length,
+            itemBuilder: (context, index) {
+              final language = controller.languages[index];
+              return ListTile(
+                title: Text(language['name']!),
+                trailing: Obx(() => controller.currentLanguage.value == language['name']
+                    ? const Icon(Icons.check, color: Colors.blue)
+                    : const SizedBox()),
+                onTap: () => controller.changeLanguage(language['name']!),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _showCurrencyDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('select_currency'.tr),
+        content: SizedBox(
+          width: double.maxFinite,
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: controller.currencies.length,
+            itemBuilder: (context, index) {
+              final currency = controller.currencies[index];
+              return ListTile(
+                title: Text(currency['name']!),
+                subtitle: Text('${currency['symbol']} (${currency['code']})'),
+                trailing: Obx(() => controller.currentCurrency.value == currency['code']
+                    ? const Icon(Icons.check, color: Colors.blue)
+                    : const SizedBox()),
+                onTap: () => controller.changeCurrency(currency['code']!),
+              );
+            },
+          ),
+        ),
       ),
     );
   }

@@ -18,7 +18,7 @@ class ProfileView extends GetView<ProfileController> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: Text('profile'.tr),
         centerTitle: true,
         actions: [
           IconButton(
@@ -88,7 +88,7 @@ class ProfileView extends GetView<ProfileController> {
                   Padding(
                     padding: const EdgeInsets.all(16),
                     child: Text(
-                      'Account Settings',
+                      'account_settings'.tr,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -99,7 +99,7 @@ class ProfileView extends GetView<ProfileController> {
                   ListTile(
                     leading: Icon(Icons.person_outline,
                         color: isDark ? Colors.grey[300] : null),
-                    title: const Text('Edit Profile'),
+                    title: Text('edit_profile'.tr),
                     trailing: Icon(Icons.arrow_forward_ios,
                         size: 16, color: isDark ? Colors.grey[300] : null),
                     onTap: () => Get.to(() => const EditProfileView()),
@@ -107,7 +107,7 @@ class ProfileView extends GetView<ProfileController> {
                   ListTile(
                     leading: Icon(Icons.location_on_outlined,
                         color: isDark ? Colors.grey[300] : null),
-                    title: const Text('Addresses'),
+                    title: Text('my_addresses'.tr),
                     trailing: Icon(Icons.arrow_forward_ios,
                         size: 16, color: isDark ? Colors.grey[300] : null),
                     onTap: () => Get.to(() => const AddressesView()),
@@ -115,7 +115,7 @@ class ProfileView extends GetView<ProfileController> {
                   ListTile(
                     leading: Icon(Icons.shopping_bag_outlined,
                         color: isDark ? Colors.grey[300] : null),
-                    title: const Text('Orders'),
+                    title: Text('my_orders'.tr),
                     trailing: Icon(Icons.arrow_forward_ios,
                         size: 16, color: isDark ? Colors.grey[300] : null),
                     onTap: () => Get.to(() => const OrdersView()),
@@ -144,7 +144,7 @@ class ProfileView extends GetView<ProfileController> {
                   Padding(
                     padding: const EdgeInsets.all(16),
                     child: Text(
-                      'Preferences',
+                      'preferences'.tr,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -155,7 +155,7 @@ class ProfileView extends GetView<ProfileController> {
                   ListTile(
                     leading: Icon(Icons.notifications_none,
                         color: isDark ? Colors.grey[300] : null),
-                    title: const Text('Notifications'),
+                    title: Text('notifications'.tr),
                     trailing: Icon(Icons.arrow_forward_ios,
                         size: 16, color: isDark ? Colors.grey[300] : null),
                     onTap: () => Get.to(() => const NotificationsView()),
@@ -163,7 +163,7 @@ class ProfileView extends GetView<ProfileController> {
                   ListTile(
                     leading: Icon(Icons.privacy_tip_outlined,
                         color: isDark ? Colors.grey[300] : null),
-                    title: const Text('Privacy'),
+                    title: Text('privacy_policy'.tr),
                     trailing: Icon(Icons.arrow_forward_ios,
                         size: 16, color: isDark ? Colors.grey[300] : null),
                     onTap: () => Get.to(() => const PrivacyView()),
@@ -192,7 +192,7 @@ class ProfileView extends GetView<ProfileController> {
                   Padding(
                     padding: const EdgeInsets.all(16),
                     child: Text(
-                      'Support',
+                      'support'.tr,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -203,7 +203,7 @@ class ProfileView extends GetView<ProfileController> {
                   ListTile(
                     leading: Icon(Icons.help_outline,
                         color: isDark ? Colors.grey[300] : null),
-                    title: const Text('Help Center'),
+                    title: Text('help_center'.tr),
                     trailing: Icon(Icons.arrow_forward_ios,
                         size: 16, color: isDark ? Colors.grey[300] : null),
                     onTap: () => Get.to(() => const HelpCenterView()),
@@ -211,7 +211,7 @@ class ProfileView extends GetView<ProfileController> {
                   ListTile(
                     leading: Icon(Icons.info_outline,
                         color: isDark ? Colors.grey[300] : null),
-                    title: const Text('About Us'),
+                    title: Text('about_us'.tr),
                     trailing: Icon(Icons.arrow_forward_ios,
                         size: 16, color: isDark ? Colors.grey[300] : null),
                     onTap: () => Get.to(() => const AboutUsView()),
@@ -227,18 +227,17 @@ class ProfileView extends GetView<ProfileController> {
               child: ElevatedButton(
                 onPressed: () => controller.logout(),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  elevation: isDark ? 1 : 2,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                child: const Text(
-                  'Logout',
-                  style: TextStyle(
-                    fontSize: 18,
+                child: Text(
+                  'log_out'.tr,
+                  style: const TextStyle(
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

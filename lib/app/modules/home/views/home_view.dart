@@ -4,6 +4,7 @@ import '../controllers/home_controller.dart';
 import '../../cart/views/cart_view.dart';
 import '../../favorites/views/favorites_view.dart';
 import '../../profile/views/profile_view.dart';
+import '../../../utils/currency_formatter.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -19,7 +20,7 @@ class HomeView extends GetView<HomeController> {
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.blue,
               ),
               child: Column(
@@ -27,17 +28,17 @@ class HomeView extends GetView<HomeController> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    'ShoeVogue',
-                    style: TextStyle(
+                    'app_name'.tr,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Text(
-                    'Find your perfect pair',
-                    style: TextStyle(
+                    'find_perfect_pair'.tr,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 16,
                     ),
@@ -46,23 +47,23 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home'),
+              leading: const Icon(Icons.home),
+              title: Text('home'.tr),
               onTap: () {
                 Get.back();
               },
             ),
             ListTile(
-              leading: Icon(Icons.category),
-              title: Text('All Products'),
+              leading: const Icon(Icons.category),
+              title: Text('all_products'.tr),
               onTap: () {
                 controller.changeCategory('All');
                 Get.back();
               },
             ),
             ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
+              leading: const Icon(Icons.settings),
+              title: Text('settings'.tr),
               onTap: () {
                 Get.back();
               },
@@ -92,28 +93,28 @@ class HomeView extends GetView<HomeController> {
                   color: controller.currentIndex.value == 0
                       ? Colors.blue
                       : Colors.grey),
-              label: 'Home',
+              label: 'home'.tr,
             ),
             NavigationDestination(
               icon: Icon(Icons.favorite_outline,
                   color: controller.currentIndex.value == 1
                       ? Colors.blue
                       : Colors.grey),
-              label: 'Favorites',
+              label: 'favorites'.tr,
             ),
             NavigationDestination(
               icon: Icon(Icons.shopping_cart_outlined,
                   color: controller.currentIndex.value == 2
                       ? Colors.blue
                       : Colors.grey),
-              label: 'Cart',
+              label: 'cart'.tr,
             ),
             NavigationDestination(
               icon: Icon(Icons.person_outline,
                   color: controller.currentIndex.value == 3
                       ? Colors.blue
                       : Colors.grey),
-              label: 'Profile',
+              label: 'profile'.tr,
             ),
           ],
         ),
@@ -155,10 +156,10 @@ class HomeView extends GetView<HomeController> {
                               scaffoldKey.currentState?.openDrawer();
                             },
                           ),
-                          const Expanded(
+                          Expanded(
                             child: Text(
-                              'ShoeVogue',
-                              style: TextStyle(
+                              'app_name'.tr,
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -188,7 +189,7 @@ class HomeView extends GetView<HomeController> {
                             Expanded(
                               child: TextField(
                                 decoration: InputDecoration(
-                                  hintText: 'Search in Store',
+                                  hintText: 'search_in_store'.tr,
                                   hintStyle: TextStyle(color: Colors.grey[400]),
                                   border: InputBorder.none,
                                 ),
@@ -210,9 +211,9 @@ class HomeView extends GetView<HomeController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Categories',
-                  style: TextStyle(
+                Text(
+                  'categories'.tr,
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
@@ -223,11 +224,11 @@ class HomeView extends GetView<HomeController> {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-                      _buildCategoryCard(context, 'All', Icons.all_inclusive),
-                      _buildCategoryCard(context, 'Sneakers', Icons.directions_run),
-                      _buildCategoryCard(context, 'Formal', Icons.business_center),
-                      _buildCategoryCard(context, 'Sports', Icons.sports_soccer),
-                      _buildCategoryCard(context, 'Casual', Icons.weekend),
+                      _buildCategoryCard(context, 'all'.tr, Icons.all_inclusive),
+                      _buildCategoryCard(context, 'sneakers'.tr, Icons.directions_run),
+                      _buildCategoryCard(context, 'formal'.tr, Icons.business_center),
+                      _buildCategoryCard(context, 'sports'.tr, Icons.sports_soccer),
+                      _buildCategoryCard(context, 'casual'.tr, Icons.weekend),
                     ],
                   ),
                 ),
@@ -235,9 +236,9 @@ class HomeView extends GetView<HomeController> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      'Popular Products',
-                      style: TextStyle(
+                    Text(
+                      'popular_products'.tr,
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
@@ -246,7 +247,7 @@ class HomeView extends GetView<HomeController> {
                       onPressed: () {
                         // TODO: Show all products
                       },
-                      child: const Text('View all'),
+                      child: Text('view_all'.tr),
                     ),
                   ],
                 ),
@@ -396,7 +397,7 @@ class HomeView extends GetView<HomeController> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '\$${product['price'].toStringAsFixed(2)}',
+                    CurrencyFormatter.formatPrice(product['price']),
                     style: const TextStyle(
                       color: Colors.blue,
                       fontWeight: FontWeight.bold,

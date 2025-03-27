@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/cart_controller.dart';
+import '../../../utils/currency_formatter.dart';
 
 class CartView extends GetView<CartController> {
   const CartView({super.key});
@@ -12,7 +13,7 @@ class CartView extends GetView<CartController> {
     
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Shopping Cart'),
+        title: Text('cart'.tr),
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
       ),
@@ -32,12 +33,12 @@ class CartView extends GetView<CartController> {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  'Your cart is empty',
+                  'cart_empty'.tr,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  'Add items to your cart to see them here',
+                  'add_items_to_cart'.tr,
                   style: TextStyle(color: Colors.grey[600]),
                 ),
                 const SizedBox(height: 30),
@@ -50,7 +51,7 @@ class CartView extends GetView<CartController> {
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                   ),
-                  child: const Text('Continue Shopping'),
+                  child: Text('continue_shopping'.tr),
                 ),
               ],
             ),
@@ -100,14 +101,14 @@ class CartView extends GetView<CartController> {
                                 const SizedBox(height: 4),
                                 if (item['size'] != null && item['size'] > 0)
                                   Text(
-                                    'Size: ${item['size']}',
+                                    '${'size'.tr}: ${item['size']}',
                                     style: TextStyle(
                                       color: Colors.grey[600],
                                     ),
                                   ),
                                 const SizedBox(height: 8),
                                 Text(
-                                  '\$${(item['price'] * item['quantity']).toStringAsFixed(2)}',
+                                  CurrencyFormatter.formatPrice(item['price'] * item['quantity']),
                                   style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -174,15 +175,15 @@ class CartView extends GetView<CartController> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          'Total:',
-                          style: TextStyle(
+                        Text(
+                          'total'.tr + ':',
+                          style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
-                          '\$${controller.total.value.toStringAsFixed(2)}',
+                          CurrencyFormatter.formatPrice(controller.total.value),
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -202,10 +203,13 @@ class CartView extends GetView<CartController> {
                           backgroundColor: Colors.blue,
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(vertical: 16),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                         ),
-                        child: const Text(
-                          'Proceed to Checkout',
-                          style: TextStyle(
+                        child: Text(
+                          'checkout'.tr,
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
