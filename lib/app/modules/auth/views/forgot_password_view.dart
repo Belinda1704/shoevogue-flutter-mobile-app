@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/auth_controller.dart';
+import '../../../services/auth_service.dart';
 
-class ForgotPasswordView extends GetView<AuthController> {
-  const ForgotPasswordView({super.key});
+class ForgotPasswordView extends GetView {
+  const ForgotPasswordView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final emailController = TextEditingController();
+    final authService = Get.find<AuthService>();
 
     return Scaffold(
       appBar: AppBar(
@@ -15,68 +16,74 @@ class ForgotPasswordView extends GetView<AuthController> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(24.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
+              const Text(
                 'Forgot Password?',
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 8),
-              Text(
-                'Enter your email address to reset your password',
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: Colors.grey[600],
-                    ),
+              const SizedBox(height: 16),
+              const Text(
+                'Enter your email address and we\'ll send you a link to reset your password.',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey,
+                ),
+                textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 48),
               TextField(
                 controller: emailController,
                 decoration: const InputDecoration(
                   labelText: 'Email',
-                  prefixIcon: Icon(Icons.email_outlined),
+                  border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () => controller.resetPassword(emailController.text),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    elevation: 2,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
+              ElevatedButton(
+                onPressed: () async {
+                  final email = emailController.text.trim();
+                  
+                  if (email.isEmpty) {
+                    Get.snackbar(
+                      'Error',
+                      'Please enter your email address',
+                      snackPosition: SnackPosition.BOTTOM,
+                    );
+                    return;
+                  }
+                  
+                  await authService.resetPassword(email);
+                  Get.back();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Text(
-                    'Send Reset Link',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                ),
+                child: const Text(
+                  'Send Reset Link',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              const Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Remember your password? ',
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  TextButton(
-                    onPressed: () => Get.back(),
-                    child: const Text('Sign In'),
-                  ),
-                ],
+              const SizedBox(height: 24),
+              TextButton(
+                onPressed: () => Get.back(),
+                child: const Text('Back to Sign In'),
               ),
             ],
           ),

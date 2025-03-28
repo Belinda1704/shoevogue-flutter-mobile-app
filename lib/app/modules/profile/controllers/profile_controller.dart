@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import '../../../routes/app_pages.dart';
 
 class ProfileController extends GetxController {
   final RxString name = "John Doe".obs;
@@ -75,7 +76,7 @@ class ProfileController extends GetxController {
   
   void logout() {
     // Here you would implement actual logout logic
-    Get.offAllNamed('/onboarding');
+    Get.offAllNamed(Routes.ONBOARDING);
   }
   
   void updateProfile({String? newName, String? newEmail, String? newImage}) {

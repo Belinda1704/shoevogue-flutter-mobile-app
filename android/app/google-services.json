@@ -12,7 +12,12 @@
           "package_name": "com.example.flutter_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "872644437819-sp9k9itcmojoi5tnbc2e5v9nfqgb8vp4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyB4ZD8ImklUC4ybVw-Edp4aFziOxjyuiMY"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "872644437819-sp9k9itcmojoi5tnbc2e5v9nfqgb8vp4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "872644437819-el33l1spk4smsditl4blja0fmu83qsij.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.shoevogue.app"
+              }
+            }
+          ]
         }
       }
     }

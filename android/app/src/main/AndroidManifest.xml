@@ -1,8 +1,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="flutter_app"
+        android:label="ShoeVogue"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        
+        <!-- reCAPTCHA configuration for Firebase Phone Auth -->
+        <meta-data
+            android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+            android:value="com.google.firebase.components.ComponentRegistrar" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -25,6 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
@@ -42,4 +52,7 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
+    <!-- Required for Google Sign-In and Phone Auth -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 </manifest>

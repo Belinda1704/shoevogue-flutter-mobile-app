@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:shoe_vogue/app/modules/auth/bindings/auth_binding.dart';
-import 'package:shoe_vogue/app/modules/auth/views/onboarding_view.dart';
 import 'package:shoe_vogue/app/modules/auth/views/login_view.dart';
 import 'package:shoe_vogue/app/modules/auth/views/signup_view.dart';
 import 'package:shoe_vogue/app/modules/auth/views/forgot_password_view.dart';
@@ -29,113 +28,126 @@ import '../modules/profile/views/help_center_view.dart';
 import '../modules/profile/views/about_us_view.dart';
 import '../modules/settings/bindings/settings_binding.dart';
 import '../modules/settings/views/settings_view.dart';
+import '../modules/auth/views/phone_auth_view.dart';
+import '../modules/auth/views/otp_verification_view.dart';
+import '../modules/onboarding/bindings/onboarding_binding.dart';
+import '../modules/onboarding/views/onboarding_view.dart';
+import '../modules/onboarding/controllers/onboarding_controller.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.onboarding;
+  static const INITIAL = Routes.ONBOARDING;
 
   static final routes = [
     GetPage(
-      name: Routes.onboarding,
+      name: Routes.ONBOARDING,
       page: () => const OnboardingView(),
-      binding: AuthBinding(),
+      binding: OnboardingBinding(),
     ),
     GetPage(
-      name: Routes.login,
+      name: Routes.LOGIN,
       page: () => const LoginView(),
       binding: AuthBinding(),
     ),
     GetPage(
-      name: Routes.signup,
+      name: Routes.SIGNUP,
       page: () => const SignupView(),
       binding: AuthBinding(),
     ),
     GetPage(
-      name: Routes.forgotPassword,
+      name: Routes.FORGOT_PASSWORD,
       page: () => const ForgotPasswordView(),
       binding: AuthBinding(),
     ),
     GetPage(
-      name: Routes.emailVerification,
+      name: Routes.EMAIL_VERIFICATION,
       page: () => const EmailVerificationView(),
       binding: AuthBinding(),
     ),
     GetPage(
-      name: Routes.home,
+      name: Routes.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
-      name: Routes.profile,
+      name: Routes.PROFILE,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
       children: [
         GetPage(
-          name: '/edit',
+          name: Routes.PROFILE_EDIT,
           page: () => const EditProfileView(),
         ),
         GetPage(
-          name: '/addresses',
+          name: Routes.PROFILE_ADDRESSES,
           page: () => const AddressesView(),
         ),
         GetPage(
-          name: '/orders',
+          name: Routes.PROFILE_ORDERS,
           page: () => const OrdersView(),
         ),
         GetPage(
-          name: '/notifications',
+          name: Routes.PROFILE_NOTIFICATIONS,
           page: () => const NotificationsView(),
         ),
         GetPage(
-          name: '/privacy',
+          name: Routes.PROFILE_PRIVACY,
           page: () => const PrivacyView(),
         ),
         GetPage(
-          name: '/help',
+          name: Routes.PROFILE_HELP,
           page: () => const HelpCenterView(),
         ),
         GetPage(
-          name: '/about',
+          name: Routes.PROFILE_ABOUT,
           page: () => const AboutUsView(),
         ),
       ],
     ),
     GetPage(
-      name: Routes.cart,
+      name: Routes.CART,
       page: () => const CartView(),
       binding: CartBinding(),
     ),
     GetPage(
-      name: Routes.favorites,
+      name: Routes.FAVORITES,
       page: () => const FavoritesView(),
       binding: FavoritesBinding(),
     ),
     GetPage(
-      name: Routes.productDetail,
+      name: Routes.PRODUCT_DETAIL,
       page: () => const ProductDetailView(),
       binding: ProductDetailBinding(),
     ),
     GetPage(
-      name: Routes.search,
+      name: Routes.SEARCH,
       page: () => SearchView(),
       binding: SearchBinding(),
     ),
     GetPage(
-      name: Routes.checkout,
+      name: Routes.CHECKOUT,
       page: () => const CheckoutView(),
       binding: CheckoutBinding(),
     ),
     GetPage(
-      name: Routes.orderSuccess,
+      name: Routes.ORDER_SUCCESS,
       page: () => const OrderSuccessView(),
     ),
     GetPage(
-      name: Routes.settings,
+      name: Routes.SETTINGS,
       page: () => const SettingsView(),
       binding: SettingsBinding(),
+    ),
+    GetPage(
+      name: Routes.PHONE_AUTH,
+      page: () => const PhoneAuthView(),
+    ),
+    GetPage(
+      name: Routes.VERIFY_OTP,
+      page: () => const OTPVerificationView(),
     ),
   ];
 } 

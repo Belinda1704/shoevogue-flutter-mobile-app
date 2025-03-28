@@ -19,11 +19,20 @@ dependencies:
   google_fonts: ^6.1.0
   flutter_rating_bar: ^4.0.1
   intl: ^0.20.2
+  intl_phone_field: ^3.2.0
   shared_preferences: ^2.2.2
-  cupertino_icons: ^1.0.8
+  cupertino_icons: ^1.0.2
+  introduction_screen: ^3.1.12
 
   # Firebase
   firebase_core: ^3.12.1
+  firebase_auth: ^5.5.1
+  cloud_firestore: ^5.6.5
+  firebase_storage: ^12.4.4
+  google_sign_in: ^6.2.1
+  flutter_facebook_auth: ^7.1.1
+  flutter_stripe: ^11.4.0
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -37,6 +46,7 @@ flutter:
     - assets/images/
     - assets/images/on_boarding_images/
     - assets/images/products/
+    - assets/icons/payment_methods/
     - assets/icons/
     - assets/logos/
     - assets/fonts/

@@ -61,6 +61,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '872644437819',
     projectId: 'shoevogueapp',
     storageBucket: 'shoevogueapp.firebasestorage.app',
+    androidClientId: '872644437819-umdtjt0jshehcch0ls4j271d48j6s0h3.apps.googleusercontent.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
@@ -69,6 +70,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '872644437819',
     projectId: 'shoevogueapp',
     storageBucket: 'shoevogueapp.firebasestorage.app',
+    iosClientId: '872644437819-el33l1spk4smsditl4blja0fmu83qsij.apps.googleusercontent.com',
     iosBundleId: 'com.shoevogue.app',
   );
+
 }
